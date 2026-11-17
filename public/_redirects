@@ -1,0 +1,11 @@
+# Alias courts et anciennes URL du site statique d'origine
+/carte          /la-carte          301
+/menu           /la-carte          301
+/prix           /la-carte          301
+/horaires       /infos-pratiques   301
+/acces          /infos-pratiques   301
+/livraison      /commander         301
+/le-lieu        /le-concept        301
+/evenements     /menu-etudiant     301
+/burgers        /smash-burgers     301
+/smash          /smash-burgers     301

@@ -1,0 +1,34 @@
+{
+  "name": "crazy-smash-tacos",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Site vitrine de Crazy Smash & Tacos, Bourg-en-Bresse",
+  "engines": {
+    "node": ">=20.9"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "npx serve@14 out",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "images": "node scripts/optimize-images.mjs",
+    "check": "npm run typecheck && npm run lint && npm run build"
+  },
+  "dependencies": {
+    "gsap": "3.15.1",
+    "lenis": "1.3.27",
+    "next": "16.4.6",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "22.20.5",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "eslint": "9.39.5",
+    "eslint-config-next": "16.4.6",
+    "sharp": "0.35.5",
+    "typescript": "5.9.3"
+  }
+}

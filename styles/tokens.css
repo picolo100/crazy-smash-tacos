@@ -1,0 +1,52 @@
+/* ==========================================================================
+   CRAZY — Smash & Tacos · Design tokens
+   Palette, typographie et rythme hérités du site d'origine (rouge / noir / crème /
+   cheddar, Anton + DM Sans, bordures encre et ombres décalées).
+   ========================================================================== */
+:root {
+  /* Couleurs de marque */
+  --red: #e3121b;          /* aplats, grands titres */
+  --red-ink: #c8101a;      /* petit texte rouge sur fond clair (AA 5.4:1) */
+  --red-glow: #ff4d55;     /* petit texte rouge sur fond sombre (AA 6:1) */
+  --red-dark: #a50c12;
+  --ink: #0d0d0d;
+  --ink-2: #1a1918;
+  --cream: #fff4e6;
+  --paper: #fffaf3;
+  --cheddar: #ffb81c;
+  --muted: #5f564c;        /* AA 6.6:1 sur crème */
+  --muted-dark: #bfb6aa;   /* AA 9.7:1 sur encre */
+  --rule: rgba(13, 13, 13, 0.16);
+  --rule-light: rgba(255, 244, 230, 0.2);
+  --ok: #17a34a;
+
+  /* Typographie */
+  --display: var(--font-anton), Impact, "Arial Narrow", sans-serif;
+  --body: var(--font-dm), Arial, sans-serif;
+  --fs-xs: 0.75rem;
+  --fs-sm: 0.875rem;
+  --fs-md: 1rem;
+  --fs-lead: clamp(1.06rem, 0.98rem + 0.4vw, 1.32rem);
+  --fs-h3: clamp(1.45rem, 1.1rem + 1.2vw, 2.1rem);
+  --fs-h2: clamp(2.9rem, 1.6rem + 5.4vw, 7rem);
+  --fs-h1: clamp(4rem, 1.6rem + 10vw, 11.5rem);
+  --track-label: 0.16em;
+
+  /* Rythme */
+  --pad: clamp(16px, 4.6vw, 80px);
+  --maxw: 1440px;
+  --gutter: max(var(--pad), calc((100% - var(--maxw)) / 2));
+  --section-y: clamp(84px, 10vw, 168px);
+  --radius: 24px;
+  --radius-sm: 14px;
+
+  /* Signature graphique */
+  --border: 2px solid var(--ink);
+  --shadow: 5px 5px 0 var(--ink);
+  --shadow-lg: 10px 10px 0 var(--ink);
+
+  /* Mouvement */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.18, 1);
+  --header-h: 72px;
+}

@@ -1,44 +1,98 @@
 # CRAZY — Smash & Tacos · site vitrine
 
-Site vitrine multipage pour **Crazy Smash & Tacos** (enseigne « CRAZY »), snack de smash burgers et tacos 100 % halal situé au **27 avenue de Mâcon, 01000 Bourg-en-Bresse**.
+Site de **Crazy Smash & Tacos** (enseigne « CRAZY »), snack de smash burgers et de tacos 100 % halal au **27 avenue de Mâcon, 01000 Bourg-en-Bresse**.
 
-Adapté à partir du modèle « Le 69 — La Pizzeria au Bout du Monde » (même architecture statique, mêmes principes d’animation), refondu pour l’identité CRAZY : rouge / noir / jaune cheddar, typographie Anton + DM Sans.
+Next.js 16 (App Router) · React 19 · TypeScript strict · GSAP 3 (ScrollTrigger, SplitText) · Lenis · export statique déployé sur Cloudflare Pages.
 
-## Pages
+---
 
-| Fichier | Contenu |
+## Démarrer
+
+```bash
+npm install
+npm run dev        # http://localhost:3000
+npm run check      # typecheck + lint + build de production
+npm run build      # génère le site statique dans ./out
+npm start          # sert ./out en local (npx serve)
+npm run images     # régénère les variantes AVIF/WebP après ajout d'une photo
+```
+
+Node ≥ 20.9 (fichier `.node-version` = 22).
+
+## Déploiement Cloudflare Pages
+
+| Réglage | Valeur |
 | --- | --- |
-| `index.html` | Accueil : hero, concept, top 3, exclusivités, menu étudiant, avis Google, horaires + plan, CTA |
-| `la-carte.html` | Carte complète : smash burgers, tacos (prix seul / en menu), menu étudiant, desserts, boissons |
-| `le-concept.html` | La technique du smash, halal, sauces maison, FAQ |
-| `menu-etudiant.html` | Menu Smash Campus à 8 €, late night, livraison |
-| `infos-pratiques.html` | Horaires, adresse, services, accès et stationnement, FAQ |
-| `contact.html` | Téléphone, Uber Eats, itinéraire, avis Google |
-| `mentions-legales.html`, `confidentialite.html`, `404.html` | Pages légales et erreur |
+| Framework preset | `Next.js (Static HTML Export)` (ou `None`) |
+| Build command | `npm run build` |
+| Build output directory | `out` |
+| Variable d'environnement (optionnelle) | `NEXT_PUBLIC_SITE_URL=https://votre-domaine.fr` |
 
-## Technique
+`NEXT_PUBLIC_SITE_URL` alimente les URL canoniques, Open Graph, le sitemap, `robots.txt` et les données structurées. Valeur par défaut : `https://crazy-smash-tacos.pages.dev`.
 
-- HTML / CSS / JS statiques, **sans étape de compilation** : déployable tel quel sur Cloudflare Pages (`_headers` inclus), Netlify, GitHub Pages…
-- `styles.css` : feuille unique ; couleurs et polices dans `:root`.
-- `app.js` : loader, apparitions au scroll (IntersectionObserver), menu mobile, curseur, boutons magnétiques, parallaxe, **statut « ouvert / fermé » en direct** (heure de Paris) et surlignage du jour dans les horaires.
-- Respect de `prefers-reduced-motion`, navigation clavier, contenu lisible sans JavaScript.
-- SEO : balises meta / Open Graph, URL canoniques, données structurées `Restaurant` (schema.org) sur l’accueil, `sitemap.xml`, `robots.txt`.
+Les fichiers `public/_headers` (sécurité + cache) et `public/_redirects` (alias courts, anciennes URL) sont copiés dans `out/` et appliqués par Cloudflare. Cloudflare sert `/la-carte` à partir de `la-carte.html` et redirige automatiquement les URL en `.html`.
 
-Pour modifier les horaires : le tableau HTML de chaque page **et** l’objet `HOURS` dans `app.js` (minutes depuis minuit ; 1620 = 3h du matin le lendemain).
+## Architecture
 
-## Sources des informations (relevées le 17/11/2026)
+```
+app/                    Routes (une page = un dossier), layout racine, sitemap, robots, manifeste, 404
+  page.tsx              Accueil
+  la-carte/             Carte complète + JSON-LD Menu
+  smash-burgers/ tacos/ Pages catégorie (recettes en photos, technique, FAQ)
+  menu-etudiant/ halal/ commander/ le-concept/ infos-pratiques/ faq/ contact/
+  guides/ [slug]/       Guides éditoriaux (SSG via generateStaticParams)
+components/
+  brand/Logo.tsx        Logo officiel vectorisé (SVG, currentColor)
+  layout/               En-tête (menu mobile accessible), pied de page, appel mobile
+  motion/               MotionProvider (chorégraphie GSAP déclarative), intro, curseur, marquee, aperçu photo
+  sections/             Héros d'accueil, étapes épinglées, grille de recettes
+  ui/                   Photo (AVIF/WebP), boutons, fil d'Ariane, FAQ, horaires, statut d'ouverture, plan à la demande
+  seo/JsonLd.tsx        Données structurées
+lib/                    Source unique des données : site.ts, hours.ts, menu.ts, reviews.ts, faq.ts, guides.ts, seo.ts
+styles/                 tokens.css → base → layout → components → sections → motion
+assets/photos/          Photos sources (non servies) → `npm run images` → public/img + lib/images.generated.ts
+public/                 Images optimisées, icônes, image Open Graph, _headers, _redirects
+```
 
-- Fiche Google Maps de l’établissement : adresse, téléphone (06 25 82 49 67), horaires, services (sur place, à emporter, livraison), description du propriétaire, publication « Menu Smash Campus 8 € », note 5,0 / 12 avis.
-- Carte Uber Eats « CRAZY » (27 avenue de Mâcon) : intitulés, descriptions et prix des recettes.
-- Photos : visuels publiés par l’établissement sur sa fiche Google / sa carte de livraison.
+### Modifier le contenu
 
-## À faire valider par le client avant mise en ligne
+- **Coordonnées, liens, note Google** : `lib/site.ts`
+- **Horaires** : `lib/hours.ts` (minutes depuis minuit ; `27 * 60` = 3 h du matin le lendemain). Tableaux, statut « Ouvert maintenant » et JSON-LD se mettent à jour seuls.
+- **Carte et prix** : `lib/menu.ts` (`menu: null` affiche « Sur place » à la place du prix en menu)
+- **Avis** : `lib/reviews.ts` · **FAQ** : `lib/faq.ts` · **Guides** : `lib/guides.ts`
+- **Photos** : déposer le fichier dans `assets/photos/` puis `npm run images`, et le référencer par son nom (typé) dans `<Photo name="…" />`.
 
-- [ ] **Prix** : relevés sur Uber Eats (souvent plus élevés qu’au comptoir). Deux anomalies dans la source : *menu smash montagnard* (12,90 € en menu < 15,90 € seul) et *menu smash poivre* (13,90 €, identique au prix seul) — leur prix en menu est affiché « Sur place » en attendant confirmation.
-- [ ] Composition exacte du **Smash Campus** et conditions du menu étudiant (justificatif ?).
-- [ ] Horaires des jours fériés, fermetures annuelles.
-- [ ] **Autorisation d’utiliser les photos** et, si possible, photos HD (la plupart font 550 × 550 px) + photos de la salle / devanture.
-- [ ] Citations d’avis Google : accord pour les afficher (signées prénom + initiale).
-- [ ] Mentions légales : raison sociale, SIRET, courriel, responsable de publication, hébergeur (passages surlignés « à compléter »).
-- [ ] Nom de domaine définitif : remplacer `https://crazy-smash-tacos.pages.dev` dans les pages (`canonical`, `og:url`), `sitemap.xml` et `robots.txt`.
-- [ ] Liens réseaux sociaux (Instagram, TikTok…) s’ils existent.
+### Animations
+
+Toutes les animations passent par `components/motion/MotionProvider.tsx`, piloté par attributs : `data-split` (titres ligne par ligne), `data-reveal`, `data-reveal-group`, `data-clip`, `data-parallax`, `data-rotate-scrub`, `data-drift`, `data-magnetic`. Elles sont créées dans un contexte GSAP (`useGSAP`) et annulées à chaque changement de page.
+
+- `prefers-reduced-motion` : aucune animation, pas de défilement doux, contenu visible immédiatement.
+- Sans JavaScript : contenu entièrement visible (les états initiaux ne s'appliquent que si `<html class="motion">`), avec un filet de sécurité à 4 s.
+- L'intro (logo sur rouge) ne s'affiche qu'à la première visite de la session sur l'accueil.
+
+## Sources des informations (relevé du 17/11/2026)
+
+- **Fiche Google Maps** : adresse, téléphone, horaires, services, description du gérant, publication « Menu Smash Campus 8 € », note 5,0 (12 avis), avis cités.
+- **Carte Uber Eats « CRAZY »** : recettes, compositions, prix, photos des plats et visuel de marque (dont le logo, vectorisé pour le site).
+
+Rien n'a été inventé : ni chiffre, ni certification, ni témoignage. Les avis sont de vrais avis Google, raccourcis (coupes signalées par […]) et signés prénom + initiale.
+
+## À valider par le client avant mise en ligne
+
+- [ ] **Prix** : relevés sur Uber Eats (souvent majorés par rapport au comptoir). Deux incohérences dans la source : *menu smash montagnard* (12,90 € < 15,90 € seul) et *menu smash poivre* (13,90 € = prix seul) → affichés « Sur place » en attendant.
+- [ ] **Photos et logo** : autorisation d'utilisation ; photos plus grandes si disponibles (la plupart des plats font 550 px) ; photos de la salle / devanture.
+- [ ] **Avis Google** : accord pour les citer.
+- [ ] **Menu étudiant** : composition du Smash Campus, justificatif demandé ou non.
+- [ ] **Halal** : souhaite-t-il mentionner un fournisseur ou un organisme de certification ?
+- [ ] **Moyens de paiement** acceptés (non publiés, donc non affichés).
+- [ ] **Mentions légales** : raison sociale, SIRET, courriel, responsable de publication (passages surlignés « à compléter »).
+- [ ] **Nom de domaine** définitif → `NEXT_PUBLIC_SITE_URL`.
+- [ ] Réseaux sociaux (Instagram, TikTok…) s'ils existent, à ajouter dans `lib/site.ts` et le pied de page.
+
+## Crédits techniques
+
+- [Next.js](https://nextjs.org) — MIT
+- [GSAP](https://gsap.com) + `@gsap/react` — licence standard GSAP « no charge » (gratuite, usage commercial autorisé)
+- [Lenis](https://github.com/darkroomengineering/lenis) — MIT
+- [sharp](https://sharp.pixelplumbing.com) — Apache-2.0 (génération des images, développement uniquement)
+- Polices Anton et DM Sans (Google Fonts, SIL Open Font License), auto-hébergées via `next/font`.
