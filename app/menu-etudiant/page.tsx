@@ -5,9 +5,9 @@ import { business } from "@/lib/site";
 import { studentMenu } from "@/lib/menu";
 
 export const metadata = pageMetadata({
-  title: "Menu étudiant 8 € à Bourg-en-Bresse · Menu Smash Campus",
+  title: "Menu étudiant 8 € à Bourg-en-Bresse",
   description:
-    "Menu Smash Campus à 8 € chez CRAZY : smash burger, frites et boisson, du mardi au vendredi le midi, à deux pas du campus universitaire de Bourg-en-Bresse. Viande halal.",
+    "Menu Smash Campus à 8 € : smash, frites et boisson, du mardi au vendredi midi, à deux pas du campus universitaire de Bourg-en-Bresse. Viande halal.",
   path: "/menu-etudiant",
 });
 

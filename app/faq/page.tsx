@@ -7,9 +7,9 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { faqSchema } from "@/lib/seo";
 
 export const metadata = pageMetadata({
-  title: "Questions fréquentes · Halal, horaires, livraison, prix",
+  title: "FAQ : halal, horaires, livraison, prix",
   description:
-    "Toutes les réponses sur Crazy Smash & Tacos à Bourg-en-Bresse : carte halal, horaires jusqu’à 3 h, livraison Uber Eats, menu étudiant 8 €, prix, allergènes et stationnement.",
+    "Les réponses sur CRAZY à Bourg-en-Bresse : carte halal, horaires jusqu’à 3 h, livraison Uber Eats, menu étudiant 8 €, prix, allergènes, parking.",
   path: "/faq",
 });
 
@@ -47,7 +47,7 @@ export default function FaqPage() {
         <section key={g.id} id={g.id} className={`section${i % 2 ? " bg-paper" : ""}`} aria-labelledby={`t-${g.id}`}>
           <div className="section-head" style={{ marginBottom: 30 }}>
             <div>
-              <SectionLabel n={String(i + 1).padStart(2, "0")}>{g.title}</SectionLabel>
+              <SectionLabel n={String(i + 1).padStart(2, "0")}>{`${g.items.length} question${g.items.length > 1 ? "s" : ""}`}</SectionLabel>
               <H2 id={`t-${g.id}`}>{g.title}.</H2>
             </div>
           </div>

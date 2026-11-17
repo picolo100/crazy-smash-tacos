@@ -12,9 +12,9 @@ import { byCategory, dishes, price, sentence, studentMenu, topThree } from "@/li
 import { reviews } from "@/lib/reviews";
 
 export const metadata = pageMetadata({
-  title: "Crazy Smash & Tacos · Smash burgers & tacos halal à Bourg-en-Bresse",
+  title: "Crazy Smash & Tacos · Smash burgers & tacos halal, Bourg-en-Bresse",
   description:
-    "Smash burgers écrasés minute et tacos généreux, 100 % halal, au 27 avenue de Mâcon à Bourg-en-Bresse. Menu étudiant 8 € le midi, ouvert jusqu’à 3 h le week-end.",
+    "Smash burgers écrasés minute et tacos généreux, 100 % halal, avenue de Mâcon à Bourg-en-Bresse. Menu étudiant 8 €, ouvert jusqu’à 3 h le week-end.",
   path: "/",
 });
 
@@ -336,9 +336,10 @@ export default function HomePage() {
 
       {/* CTA final */}
       <section className="final-cta" aria-labelledby="final-title">
-        <span className="drift-word" aria-hidden="true" data-drift="">
-          SMASH · TACOS · SMASH · TACOS · SMASH
-        </span>
+        {/* Mot géant décoratif en SVG (hors du texte de la page). */}
+        <svg className="drift-word" viewBox="0 0 3000 240" aria-hidden="true" focusable="false" data-drift="">
+          <text x="0" y="205">SMASH · TACOS · SMASH · TACOS · SMASH</text>
+        </svg>
         <h2 className="big" id="final-title">
           T’as la dalle&nbsp;?
           <br />

@@ -6,7 +6,7 @@ import { pageMetadata } from "@/lib/seo";
 import { business } from "@/lib/site";
 
 export const metadata = pageMetadata({
-  title: "Contact · Téléphone, adresse et avis",
+  title: "Contact : téléphone, adresse et avis",
   description:
     "Contacter Crazy Smash & Tacos à Bourg-en-Bresse : 06 25 82 49 67, 27 avenue de Mâcon. Commande à emporter par téléphone, livraison Uber Eats, avis Google.",
   path: "/contact",

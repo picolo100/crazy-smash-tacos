@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     default: "Crazy Smash & Tacos · Smash burgers & tacos halal à Bourg-en-Bresse",
-    template: "%s · Crazy Smash & Tacos",
+    template: "%s · CRAZY",
   },
   description:
     "Smash burgers écrasés minute et tacos généreux, 100 % halal, au 27 avenue de Mâcon à Bourg-en-Bresse. Menu étudiant 8 €, ouvert jusqu’à 3 h le week-end.",

@@ -9,9 +9,9 @@ import { business } from "@/lib/site";
 import { DRINK_PRICE, byCategory, dessert, drinks, flagLabel, price, sentence, studentMenu, type Dish } from "@/lib/menu";
 
 export const metadata = pageMetadata({
-  title: "La carte & les prix · Smash burgers, tacos, menu étudiant",
+  title: "Carte & prix : smash burgers, tacos, menu étudiant",
   description:
-    "Carte complète de Crazy Smash & Tacos à Bourg-en-Bresse : 9 smash burgers dès 9 €, 5 tacos dès 10,90 €, menus avec frites et boisson, menu étudiant 8 €, desserts. 100 % halal.",
+    "La carte de CRAZY à Bourg-en-Bresse : 9 smash burgers dès 9 €, 5 tacos dès 10,90 €, menus frites + boisson, menu étudiant 8 €, dessert. 100 % halal.",
   path: "/la-carte",
 });
 

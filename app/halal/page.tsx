@@ -7,9 +7,9 @@ import { business } from "@/lib/site";
 import { faqs } from "@/lib/faq";
 
 export const metadata = pageMetadata({
-  title: "Burger & tacos halal à Bourg-en-Bresse · Carte 100 % halal",
+  title: "Burger & tacos halal à Bourg-en-Bresse",
   description:
-    "CRAZY, restaurant halal à Bourg-en-Bresse : toute la carte est 100 % halal, du smash burger au tacos, bacon de bœuf compris. 27 avenue de Mâcon, sur place, à emporter, livraison.",
+    "Restaurant halal à Bourg-en-Bresse : chez CRAZY, toute la carte est 100 % halal, du smash burger au tacos, bacon de bœuf compris. Sur place ou livré.",
   path: "/halal",
 });
 

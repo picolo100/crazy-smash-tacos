@@ -8,9 +8,9 @@ import { business } from "@/lib/site";
 import { faqs } from "@/lib/faq";
 
 export const metadata = pageMetadata({
-  title: "Commander : livraison, à emporter ou sur place à Bourg-en-Bresse",
+  title: "Commander : livraison, à emporter ou sur place",
   description:
-    "Commander chez CRAZY à Bourg-en-Bresse : livraison via Uber Eats, à emporter par téléphone au 06 25 82 49 67, ou sur place au 27 avenue de Mâcon. Ouvert jusqu’à 3 h le week-end.",
+    "Commander chez CRAZY à Bourg-en-Bresse : livraison Uber Eats, à emporter au 06 25 82 49 67 ou sur place avenue de Mâcon. Jusqu’à 3 h le week-end.",
   path: "/commander",
 });
 

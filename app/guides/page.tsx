@@ -5,9 +5,9 @@ import { pageMetadata } from "@/lib/seo";
 import { guides } from "@/lib/guides";
 
 export const metadata = pageMetadata({
-  title: "Guides · Smash burger et tacos français expliqués",
+  title: "Guides : smash burger et tacos français",
   description:
-    "Les guides de CRAZY : tout savoir sur le smash burger (technique, différences) et le tacos français (origine, composition). Par un snack spécialisé à Bourg-en-Bresse.",
+    "Tout savoir sur le smash burger (technique, différences) et le tacos français (origine, composition), par un snack spécialisé de Bourg-en-Bresse.",
   path: "/guides",
 });
 
@@ -28,9 +28,9 @@ export default function GuidesPage() {
       <section className="section" aria-label="Liste des guides">
         <SectionLabel>{guides.length} guides</SectionLabel>
         <div className="guide-list">
-          {guides.map((g) => (
-            <article key={g.slug} className="guide-card" data-reveal="">
-              <Photo name={g.image} alt={g.imageAlt} sizes="(max-width: 920px) 92vw, 46vw" />
+          {guides.map((g, i) => (
+            <article key={g.slug} className="guide-card">
+              <Photo name={g.image} alt={g.imageAlt} sizes="(max-width: 920px) 92vw, 46vw" priority={i === 0} />
               <div className="body">
                 <span className="meta">Guide · {g.readingMinutes} min de lecture</span>
                 <h2>

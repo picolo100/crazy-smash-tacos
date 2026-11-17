@@ -22,10 +22,10 @@ export type Guide = {
 export const guides: Guide[] = [
   {
     slug: "smash-burger",
-    title: "Smash burger : définition, technique et différences avec un burger classique",
+    title: "Smash burger : définition, technique et différences",
     h1: "Le smash burger, expliqué.",
     description:
-      "Qu’est-ce qu’un smash burger ? Pourquoi écrase-t-on la viande, quelle différence avec un burger classique, simple ou double : le guide complet, par CRAZY à Bourg-en-Bresse.",
+      "Qu’est-ce qu’un smash burger ? Pourquoi écraser la viande, quelle différence avec un burger classique, simple ou double : le guide de CRAZY.",
     excerpt: "Pourquoi on écrase la viande, ce que ça change au goût, et comment le reconnaître.",
     image: "smash-double-cheese",
     imageAlt: "Smash double cheese : deux steaks fins à la croûte caramélisée, cheddar fondu et cornichons",
@@ -79,10 +79,10 @@ export const guides: Guide[] = [
   },
   {
     slug: "tacos-francais",
-    title: "Le tacos français : origine, composition et différences avec le taco mexicain",
+    title: "Tacos français : origine, composition, différences",
     h1: "Le tacos français, de A à Z.",
     description:
-      "D’où vient le tacos français, comment il se compose (galette, viande, frites, sauce fromagère) et ce qui le distingue du taco mexicain. Le guide de CRAZY, à Bourg-en-Bresse.",
+      "D’où vient le tacos français, comment il se compose (galette, viande, frites, sauce fromagère) et ce qui le distingue du taco mexicain.",
     excerpt: "Galette pliée, frites dedans, sauce fromagère : l’histoire d’un classique né près de chez nous.",
     image: "tacos-mixte",
     imageAlt: "Tacos mixte coupé en deux : galette grillée, poulet mariné, kefta, frites et sauce gruyère",

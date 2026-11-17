@@ -10,9 +10,9 @@ import { byCategory, price, sauces } from "@/lib/menu";
 import { faqs } from "@/lib/faq";
 
 export const metadata = pageMetadata({
-  title: "Smash burgers halal à Bourg-en-Bresse · 9 recettes dès 9 €",
+  title: "Smash burgers halal à Bourg-en-Bresse dès 9 €",
   description:
-    "Les smash burgers de CRAZY à Bourg-en-Bresse : viande écrasée minute, cheddar fondant, sauces maison. Cheese smash, bacon smash, smash croissant et smash poulet exclusifs. 100 % halal.",
+    "Smash burgers à Bourg-en-Bresse : viande écrasée minute, cheddar fondant, sauces maison. Du cheese smash au smash croissant exclusif. 100 % halal.",
   path: "/smash-burgers",
 });
 

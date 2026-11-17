@@ -24,7 +24,8 @@ export const business = {
     maps: "https://www.google.com/maps/search/?api=1&query=Crazy%20Smash%20%26%20Tacos&query_place_id=ChIJu1zCR5tT80cR17bpz5wwaao",
     directions: "https://www.google.com/maps/dir/?api=1&destination=Crazy%20Smash%20%26%20Tacos&destination_place_id=ChIJu1zCR5tT80cR17bpz5wwaao",
     mapEmbed: "https://www.google.com/maps?q=Crazy+Smash+%26+Tacos,+27+Av.+de+M%C3%A2con,+01000+Bourg-en-Bresse&output=embed",
-    reviews: "https://search.google.com/local/reviews?placeid=ChIJu1zCR5tT80cR17bpz5wwaao",
+    /** Fiche Google Maps (avis visibles sur la fiche). */
+    reviews: "https://www.google.com/maps/search/?api=1&query=Crazy%20Smash%20%26%20Tacos&query_place_id=ChIJu1zCR5tT80cR17bpz5wwaao",
     writeReview: "https://search.google.com/local/writereview?placeid=ChIJu1zCR5tT80cR17bpz5wwaao",
     uberEats: "https://www.ubereats.com/fr/store/crazy/ZYeaJujJRc2LDSC-r4NIrw",
   },

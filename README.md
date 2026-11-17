@@ -64,11 +64,32 @@ public/                 Images optimisées, icônes, image Open Graph, _headers,
 
 ### Animations
 
-Toutes les animations passent par `components/motion/MotionProvider.tsx`, piloté par attributs : `data-split` (titres ligne par ligne), `data-reveal`, `data-reveal-group`, `data-clip`, `data-parallax`, `data-rotate-scrub`, `data-drift`, `data-magnetic`. Elles sont créées dans un contexte GSAP (`useGSAP`) et annulées à chaque changement de page.
+Les animations passent par `components/motion/MotionProvider.tsx`, piloté par attributs : `data-split` (titres ligne par ligne, GSAP SplitText), `data-reveal`, `data-reveal-group`, `data-clip` (IntersectionObserver + CSS), `data-parallax`, `data-rotate-scrub`, `data-drift` (ScrollTrigger), `data-magnetic`. Le hook `useMotion` (`lib/motion.ts`) charge GSAP à la volée, rattache les animations à un `gsap.context()` et les annule au démontage ou au changement de page.
 
 - `prefers-reduced-motion` : aucune animation, pas de défilement doux, contenu visible immédiatement.
 - Sans JavaScript : contenu entièrement visible (les états initiaux ne s'appliquent que si `<html class="motion">`), avec un filet de sécurité à 4 s.
 - L'intro (logo sur rouge) ne s'affiche qu'à la première visite de la session sur l'accueil.
+
+## Qualité et performance
+
+Contrôles réalisés sur le build de production (voir le compte rendu de livraison pour le détail) :
+
+- `npm run typecheck` (TypeScript strict) et `npm run lint` (ESLint, règles Next « core web vitals ») : 0 erreur, 0 avertissement.
+- `npm run build` : 21 routes générées en statique.
+- **axe-core 4.10** (WCAG 2.0 / 2.1 / 2.2 A-AA + bonnes pratiques) sur 17 pages × ordinateur et mobile : 0 violation.
+- **Liens** : 882 liens internes et ancres vérifiés, liens externes testés.
+- **Modes dégradés** : sans JavaScript, avec `prefers-reduced-motion`, navigation clavier du menu mobile (piège de focus, Échap).
+- **Lighthouse 12** : tableau ci-dessous (build servi avec compression gzip et 40 ms de latence, proche de Cloudflare Pages).
+
+<!-- LIGHTHOUSE -->
+
+Choix de performance :
+- GSAP, ScrollTrigger, SplitText et Lenis sont **chargés après le premier rendu** (import dynamique) : le JS critique se limite au socle React/Next.
+- Intro et entrée du héros en **CSS pur** (titre découpé en caractères côté serveur) ; apparitions au scroll par IntersectionObserver + transitions CSS ; bandeau défilant animé par le compositeur.
+- Images AVIF/WebP responsives avec dimensions intrinsèques (CLS = 0), polices auto-hébergées, logo en sprite SVG mis en cache, plan Google chargé uniquement au clic.
+- LCP réel mesuré dans le navigateur (CPU ralenti ×4) : ≈ 0,2 s. Sur un serveur local sans compression, la simulation Lighthouse surestime fortement le LCP mobile : mesurer sur l'URL Cloudflare (PageSpeed Insights) pour des chiffres de production.
+
+Sécurité : `npm audit --omit=dev` → 0 vulnérabilité. Les alertes restantes (`picomatch`, ReDoS) ne concernent que l'outillage ESLint en développement ; aucune version corrigée n'est publiée à ce jour.
 
 ## Sources des informations (relevé du 17/11/2026)
 
@@ -92,7 +113,7 @@ Rien n'a été inventé : ni chiffre, ni certification, ni témoignage. Les avis
 ## Crédits techniques
 
 - [Next.js](https://nextjs.org) — MIT
-- [GSAP](https://gsap.com) + `@gsap/react` — licence standard GSAP « no charge » (gratuite, usage commercial autorisé)
+- [GSAP](https://gsap.com) — licence standard GSAP « no charge » (gratuite, usage commercial autorisé)
 - [Lenis](https://github.com/darkroomengineering/lenis) — MIT
 - [sharp](https://sharp.pixelplumbing.com) — Apache-2.0 (génération des images, développement uniquement)
 - Polices Anton et DM Sans (Google Fonts, SIL Open Font License), auto-hébergées via `next/font`.

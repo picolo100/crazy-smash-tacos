@@ -9,9 +9,9 @@ import { business } from "@/lib/site";
 import { faqs } from "@/lib/faq";
 
 export const metadata = pageMetadata({
-  title: "Horaires & accès · 27 avenue de Mâcon, Bourg-en-Bresse",
+  title: "Horaires & accès, 27 av. de Mâcon à Bourg-en-Bresse",
   description:
-    "Horaires d’ouverture de Crazy Smash & Tacos (jusqu’à 3 h le week-end, fermé le lundi), adresse au 27 avenue de Mâcon à Bourg-en-Bresse, plan, stationnement et téléphone.",
+    "Horaires de CRAZY (jusqu’à 3 h le week-end, fermé le lundi), adresse au 27 avenue de Mâcon à Bourg-en-Bresse, plan, stationnement et téléphone.",
   path: "/infos-pratiques",
 });
 

@@ -9,9 +9,9 @@ import { byCategory, price } from "@/lib/menu";
 import { faqs } from "@/lib/faq";
 
 export const metadata = pageMetadata({
-  title: "Tacos halal à Bourg-en-Bresse · Tacos mixte, crazy, montagnard",
+  title: "Tacos halal à Bourg-en-Bresse dès 10,90 €",
   description:
-    "Les tacos de CRAZY à Bourg-en-Bresse : galette grillée, poulet mariné, kefta, frites et sauce gruyère maison. 5 recettes dès 10,90 €, en menu avec frites et boisson. 100 % halal.",
+    "Tacos à Bourg-en-Bresse : galette grillée, poulet mariné, kefta, frites et sauce gruyère maison. 5 recettes dès 10,90 €, seul ou en menu. 100 % halal.",
   path: "/tacos",
 });
 

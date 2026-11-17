@@ -155,7 +155,7 @@
   border-bottom: var(--border);
   overflow: hidden;
 }
-.page-hero h1 { font: clamp(3.6rem, 1.4rem + 8.6vw, 9.4rem) / 0.86 var(--display); text-transform: uppercase; margin: 26px 0 28px; text-wrap: balance; }
+.page-hero h1 { font: clamp(3.6rem, 1.4rem + 8.6vw, 9.4rem) / 0.92 var(--display); text-transform: uppercase; margin: 26px 0 28px; text-wrap: balance; }
 .page-hero h1 em { font-style: normal; color: var(--red); }
 .page-hero.red { background: var(--red); color: #fff; }
 .page-hero.red h1 em { color: var(--ink); }
@@ -175,6 +175,8 @@
   overflow: hidden;
 }
 .page-hero.ink .hero-figure { border-color: var(--cream); box-shadow: 10px 10px 0 var(--red); }
+.page-hero.ink .btn { box-shadow: 5px 5px 0 var(--red); }
+.page-hero.ink .btn-ink { border-color: var(--cream); }
 .page-hero .btn-row { margin-top: 30px; }
 .page-hero .open-status { margin-top: 26px; }
 
@@ -388,3 +390,4 @@ html[data-intro] .intro .bar i { animation: intro-bar 0.55s ease-in-out 0.1s for
 .photo picture { display: block; width: 100%; height: 100%; }
 .hero-figure .photo, .frame .photo { height: 100%; }
 .bg-ink .badge.ink { background: var(--cream); color: var(--ink); border-color: var(--cream); }
+.page-hero.cheddar .crumbs [aria-current] { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }

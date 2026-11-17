@@ -5,9 +5,9 @@ import { pageMetadata } from "@/lib/seo";
 import { sauces } from "@/lib/menu";
 
 export const metadata = pageMetadata({
-  title: "Le concept CRAZY · Smash burgers & tacos faits minute",
+  title: "Le concept : smash burgers & tacos faits minute",
   description:
-    "CRAZY, snack de smash burgers et de tacos à Bourg-en-Bresse : viande smashée à la commande, sauces maison, deux recettes exclusives et une carte 100 % halal pensée pour toutes les faims.",
+    "CRAZY, snack de smash burgers et tacos à Bourg-en-Bresse : viande smashée à la commande, sauces maison, deux recettes exclusives, carte 100 % halal.",
   path: "/le-concept",
 });
 
