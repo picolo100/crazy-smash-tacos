@@ -6,7 +6,7 @@ import { useMotion } from "@/lib/motion";
 export type Step = { n: string; title: string; text: string; visual: "ball" | "press" | "cheese" };
 
 /**
- * Procédé en 3 temps. Desktop : la section est épinglée et les étapes s'allument
+ * Procédé en 3 temps. Desktop : la section est épinglée et les étapes apparaissent
  * une à une au fil du scroll (explication séquentielle). Mobile / mouvement réduit :
  * simple pile lisible.
  */
@@ -22,7 +22,7 @@ export function PinnedSteps({ steps, title, label }: { steps: Step[]; title: Rea
           scrollTrigger: { trigger: root.current, start: "top top", end: "+=140%", pin: true, scrub: 0.6, anticipatePin: 1 },
         });
         cards.forEach((card, i) => {
-          tl.fromTo(card, { y: 120, opacity: 0.15, rotate: i % 2 ? 3 : -3 }, { y: 0, opacity: 1, rotate: 0, duration: 1, ease: "power2.out" }, i * 0.8);
+          tl.fromTo(card, { y: 120, opacity: 0, rotate: i % 2 ? 3 : -3 }, { y: 0, opacity: 1, rotate: 0, duration: 1, ease: "power2.out" }, i * 0.8);
           tl.fromTo(card.querySelector(".visual"), { scale: 0.6 }, { scale: 1, duration: 0.8, ease: "back.out(2)" }, i * 0.8 + 0.3);
         });
         // L'épinglage ajoute un espace dans la page : recalcul des autres déclencheurs.

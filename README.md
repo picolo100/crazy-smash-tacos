@@ -81,13 +81,26 @@ Contrôles réalisés sur le build de production (voir le compte rendu de livrai
 - **Modes dégradés** : sans JavaScript, avec `prefers-reduced-motion`, navigation clavier du menu mobile (piège de focus, Échap).
 - **Lighthouse 12** : tableau ci-dessous (build servi avec compression gzip et 40 ms de latence, proche de Cloudflare Pages).
 
-<!-- LIGHTHOUSE -->
+| Page | Perf. mobile | Perf. ordinateur | Accessibilité | Bonnes pratiques | SEO |
+| --- | --- | --- | --- | --- | --- |
+| Accueil | 97 | 99 | 100 | 100 | 100 |
+| La carte | 94 | 100 | 100 | 100 | 100 |
+| Smash burgers | 96 | 100 | 100 | 100 | 100 |
+| Tacos | 97 | 100 | 100 | 100 | 100 |
+| Menu étudiant | 95 | 100 | 100 | 100 | 100 |
+| Halal · Commander · Le concept | 97 | — | 100 | 100 | 100 |
+| Infos pratiques | 97 | — | 100 | 100 | 100 |
+| FAQ · Contact · Guides | 99 à 100 | — | 100 | 100 | 100 |
+| Guides (articles) | 97 | 100 | 100 | 100 | 100 |
+| Mentions légales · Confidentialité | 99 à 100 | — | 100 | 100 | 66 (volontairement `noindex`) |
+
+CLS = 0 sur toutes les pages. Mobile = profil Lighthouse par défaut (Moto G Power émulé, 4G lente simulée). Pour des chiffres de production, mesurer l'URL Cloudflare dans PageSpeed Insights.
 
 Choix de performance :
 - GSAP, ScrollTrigger, SplitText et Lenis sont **chargés après le premier rendu** (import dynamique) : le JS critique se limite au socle React/Next.
 - Intro et entrée du héros en **CSS pur** (titre découpé en caractères côté serveur) ; apparitions au scroll par IntersectionObserver + transitions CSS ; bandeau défilant animé par le compositeur.
 - Images AVIF/WebP responsives avec dimensions intrinsèques (CLS = 0), polices auto-hébergées, logo en sprite SVG mis en cache, plan Google chargé uniquement au clic.
-- LCP réel mesuré dans le navigateur (CPU ralenti ×4) : ≈ 0,2 s. Sur un serveur local sans compression, la simulation Lighthouse surestime fortement le LCP mobile : mesurer sur l'URL Cloudflare (PageSpeed Insights) pour des chiffres de production.
+- LCP réel mesuré dans le navigateur (CPU ralenti ×4, réseau local) : ≈ 0,2 s. Attention : servi sans compression (serveur de développement local), Lighthouse surestime fortement le LCP mobile.
 
 Sécurité : `npm audit --omit=dev` → 0 vulnérabilité. Les alertes restantes (`picomatch`, ReDoS) ne concernent que l'outillage ESLint en développement ; aucune version corrigée n'est publiée à ce jour.
 
